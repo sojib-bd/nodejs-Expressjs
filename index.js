@@ -1,17 +1,26 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
+
+app.use(bodyParser.json())
+app.use(cors())
 
 
 app.get('/', (req, res) => {
-    res.send('Hello World!!')
+    res.send('This is from GET Method')
 })
 
-app.get('/app/:id', (req, res) => {
+app.get('/cors', cors(), (req, res) => {
 
-    res.send(req.params)
+    res.json({ Message: "I am coming through the cors middleware" })
 })
 
+app.post('/clientInfo', (req, res) => {
+    console.log(req.body)
+})
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`listening from ${port}`))
+app.listen(4200, (req, res) => {
+    console.log("listening from port 4200")
+})
