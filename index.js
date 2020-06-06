@@ -12,13 +12,15 @@ app.get('/', (req, res) => {
     res.send('This is from GET Method')
 })
 
-app.get('/cors', cors(), (req, res) => {
-
-    res.json({ Message: "I am coming through the cors middleware" })
-})
 
 app.post('/clientInfo', (req, res) => {
-    console.log(req.body)
+    console.log(req.body);
+    const data = req.body;
+    res.json({
+        username: data.username,
+        userMail: data.userMail,
+        userPass: data.userPass
+    })
 })
 
 app.listen(4200, (req, res) => {
